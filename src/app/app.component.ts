@@ -13,7 +13,6 @@ import { AuthenticationService } from './_services';
 })
 export class AppComponent {
   title = 'FireBaseApp';
-  users = [];
   currentUser: any;
 
   constructor(

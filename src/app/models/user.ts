@@ -1,7 +1,6 @@
 export class User {
-  key: string;
-  name: string;
-  email: string;
+  firstName: string;
+  lastName: string;
+  username: string;
   password: string;
-  subscriptionList: [];
 }

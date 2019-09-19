@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import {first, map} from 'rxjs/operators';
+import { UserServiceDB } from '../../models/user.service';
 
 import { AuthenticationService, AlertService } from '../../_services';
+import {environment} from "../../../environments/environment";
+import {redirectLoggedInTo} from "@angular/fire/auth-guard";
+import {Observable} from "rxjs";
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
@@ -11,11 +15,14 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
+  username: string;
+  password: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private userServiceDB: UserServiceDB,
     private authenticationService: AuthenticationService,
     private alertService: AlertService
   ) {
@@ -50,7 +57,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
+    /*this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {
@@ -59,6 +66,26 @@ export class LoginComponent implements OnInit {
         error => {
           this.alertService.error(error);
           this.loading = false;
+        });*/
+
+    // Para la DB de Firebase
+    this.userServiceDB.getUsersList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val()})
+        )
+      )
+    ).subscribe(
+      data => {
+        data.forEach( x => {
+          if (x.username === this.username && x.password === this.password) {
+            this.authenticationService.login(this.username, this.password);
+          }
         });
+      },
+      error => {
+        this.alertService.error(error);
+        this.loading = false;
+      });
   }
 }

@@ -8,6 +8,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { FormsModule } from '@angular/forms';
+
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
 
@@ -40,7 +42,8 @@ import { AlertComponent } from './components/alert/alert.component';
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    appRoutingModule
+    appRoutingModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
