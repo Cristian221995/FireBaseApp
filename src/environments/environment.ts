@@ -11,7 +11,8 @@ export const environment = {
     projectId: 'fir-bc876',
     storageBucket: '',
     messagingSenderId: '111723231158'
-  }
+  },
+  apiUrl: 'http://localhost:4200/'
 };
 
 /*
