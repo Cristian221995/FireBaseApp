@@ -5,7 +5,8 @@ import { first } from 'rxjs/operators';
 
 import { UserService, AuthenticationService, AlertService } from '../../_services';
 
-@Component({ templateUrl: 'register.component.html' })
+// tslint:disable-next-line:component-selector
+@Component({ templateUrl: 'register.component.html', selector: 'register-app' })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;

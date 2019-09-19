@@ -5,7 +5,10 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService, AlertService } from '../../_services';
 
-@Component({templateUrl: 'login.component.html'})
+@Component({templateUrl: 'login.component.html',
+  // tslint:disable-next-line:component-selector
+            selector: 'login-app'
+})
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
