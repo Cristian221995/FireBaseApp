@@ -5,9 +5,9 @@ import {first, map} from 'rxjs/operators';
 import { UserServiceDB } from '../../models/user.service';
 
 import { AuthenticationService, AlertService } from '../../_services';
-import {environment} from "../../../environments/environment";
-import {redirectLoggedInTo} from "@angular/fire/auth-guard";
-import {Observable} from "rxjs";
+import {environment} from '../../../environments/environment';
+import {redirectLoggedInTo} from '@angular/fire/auth-guard';
+import {Observable} from 'rxjs';
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
@@ -77,9 +77,11 @@ export class LoginComponent implements OnInit {
       )
     ).subscribe(
       data => {
+        console.log(data);
         data.forEach( x => {
+          console.log(x);
           if (x.username === this.username && x.password === this.password) {
-            this.authenticationService.login(this.username, this.password);
+
           }
         });
       },
