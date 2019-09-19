@@ -7,6 +7,7 @@ import { FormNoticeComponent } from './components/form-notice/form-notice.compon
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { appRoutingModule } from './app.routing';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { appRoutingModule } from './app.routing';
     NoticeComponent,
     FormNoticeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
