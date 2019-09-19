@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "utnapp",
+    "public": "dist/FireBaseApp",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
