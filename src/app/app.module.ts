@@ -20,7 +20,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AlertComponent } from './components/alert/alert.component';
-import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
