@@ -80,9 +80,11 @@ export class LoginComponent implements OnInit {
       )
     ).subscribe(
       data => {
+        console.log(data);
         data.forEach( x => {
+          console.log(x);
           if (x.username === this.username && x.password === this.password) {
-            this.authenticationService.login(this.username, this.password);
+
           }
         });
       },
