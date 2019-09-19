@@ -5,24 +5,24 @@ import { environment } from '../environments/environment';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-import { FormsModule } from '@angular/forms';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
-
-import { appRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { NoticeComponent} from './components/notice/notice.component';
 import { FormNoticeComponent } from './components/form-notice/form-notice.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { appRoutingModule } from './app.routing';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AlertComponent } from './components/alert/alert.component';
+import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { AlertComponent } from './components/alert/alert.component';
     RegisterComponent,
     NavComponent,
     HomeComponent,
-    AlertComponent
+    AlertComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -43,6 +43,7 @@ import { AlertComponent } from './components/alert/alert.component';
     ReactiveFormsModule,
     HttpClientModule,
     appRoutingModule,
+    NgbDropdownModule,
     FormsModule
   ],
   providers: [
