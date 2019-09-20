@@ -7,6 +7,7 @@ import { UserServiceDB } from '../models/user.service';
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -40,13 +41,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     function authenticate() {
       const { username, password } = body;
-      const user = users.find(x => x.username === username && x.password === password);
-      if (!user) { return error('Username or password is incorrect'); }
+      // const user = users.find(x => x.username === username && x.password === password);
+      if (!users) { return error('Username or password is incorrect'); }
       return ok({
-        id: user.id,
-        username: user.username,
-        firstName: user.firstName,
-        lastName: user.lastName,
+        id: users[0].id,
+        username: users[0].username,
+        firstName: users[0].firstName,
+        lastName: users[0].lastName,
         token: 'fake-jwt-token'
       });
     }

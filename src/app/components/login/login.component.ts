@@ -7,7 +7,7 @@ import { UserServiceDB } from '../../models/user.service';
 import { AuthenticationService, AlertService } from '../../_services';
 import {environment} from '../../../environments/environment';
 import {redirectLoggedInTo} from '@angular/fire/auth-guard';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Component({templateUrl: 'login.component.html',
   // tslint:disable-next-line:component-selector
@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   username: string;
   password: string;
+  private currentUserSubject: BehaviorSubject<any>;
+  public currentUser: Observable<any>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,10 +29,11 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userServiceDB: UserServiceDB,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService
-  ) {
+    private alertService: AlertService,
+  ) {this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
+     this.currentUser = this.currentUserSubject.asObservable();
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
+     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
     }
   }
@@ -60,6 +63,25 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
+    // Para la DB de Firebase
+    this.userServiceDB.getUsersList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val()})
+        )
+      )
+    ).subscribe(
+      data => {
+        data.forEach( x => {
+          if (x.username === this.username && x.password === this.password) {
+            localStorage.setItem('users', JSON.stringify(x));
+          }
+        });
+      },
+      error => {
+        this.alertService.error(error);
+        this.loading = false;
+      });
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
@@ -70,27 +92,5 @@ export class LoginComponent implements OnInit {
           this.alertService.error(error);
           this.loading = false;
         });
-
-    // Para la DB de Firebase
-    this.userServiceDB.getUsersList().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val()})
-        )
-      )
-    ).subscribe(
-      data => {
-        console.log(data);
-        data.forEach( x => {
-          console.log(x);
-          if (x.username === this.username && x.password === this.password) {
-
-          }
-        });
-      },
-      error => {
-        this.alertService.error(error);
-        this.loading = false;
-      });
   }
 }
