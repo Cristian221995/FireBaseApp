@@ -1,33 +1,53 @@
-<div class="row">
-  <div class="col">
-    <div ngbDropdown class="d-inline-block">
-      <button class="btn btn-outline-primary" style="margin: 5px" id="dropdownForm1" ngbDropdownToggle>Sign In</button>
-      <div ngbDropdownMenu aria-labelledby="dropdownForm1">
-        <form class="px-4 py-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input [(ngModel)]="username" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-              <div *ngIf="f.username.errors.required">Username is required</div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">FireApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item active">
+          <div class="row">
+            <div class="col">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" style="margin: 5px" id="dropdownForm1" ngbDropdownToggle>Sign In</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownForm1">
+                  <form class="px-4 py-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                      <label for="username">Username</label>
+                      <input [(ngModel)]="username" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                      <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input [(ngModel)]="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button [disabled]="loading" class="btn btn-primary">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                        Login
+                      </button>
+                    </div>
+                  </form>
+                  <div class="dropdown-divider"></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input [(ngModel)]="password" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-              <div *ngIf="f.password.errors.required">Password is required</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">
-              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-              Login
-            </button>
-          </div>
-        </form>
-        <div class="dropdown-divider"></div>
-      </div>
+        </li>
+
+        <li class="nav-item active" [hidden]="">
+          <register-app></register-app>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
-
+</nav>
+<br><br><br>
+<app-notice></app-notice>

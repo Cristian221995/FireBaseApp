@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import { AuthenticationService, AlertService } from '../../_services';
 
 @Component({
   selector: 'app-nav',
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+  @Input()
+  currentUser;
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService,
+              private alertService: AlertService) {
+  }
+  logOut() {
+    this.authenticationService.logout();
+  }
 
   ngOnInit() {
   }
