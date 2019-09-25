@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
-import {Notice} from '../models/notice';
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Notice } from '../models/notice';
 
 @Injectable({ providedIn: 'root' })
 export class NoticeService {
@@ -14,6 +14,7 @@ export class NoticeService {
   }
 
   createNotice(notice: Notice): void {
+    console.log(notice);
     this.userRef.push(notice);
   }
 

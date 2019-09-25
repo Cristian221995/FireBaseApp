@@ -10,7 +10,9 @@
         <li class="nav-item active">
           <p class="d-flex" style="color: aliceblue; margin-top: 10px"><button class="btn btn-dark">Hi {{currentUser.firstName}}!</button></p>
         </li>
-
+        <li class="nav-item active" [hidden]="">
+          <app-form-notice></app-form-notice>
+        </li>
         <li class="nav-item active">
           <button style="color: aliceblue; margin-top: 10px" class="btn btn-danger" (click)="logOut()">Log out</button>
         </li>
