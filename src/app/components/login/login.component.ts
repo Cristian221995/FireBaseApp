@@ -75,6 +75,16 @@ export class LoginComponent implements OnInit {
         data.forEach( x => {
           if (x.username === this.username && x.password === this.password) {
             localStorage.setItem('users', JSON.stringify(x));
+            this.authenticationService.login(this.username, this.password)
+              .pipe(first())
+              .subscribe(
+                x => {
+                  this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                  this.alertService.error(error);
+                  this.loading = false;
+                });
           }
         });
       },
@@ -82,15 +92,5 @@ export class LoginComponent implements OnInit {
         this.alertService.error(error);
         this.loading = false;
       });
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        });
   }
 }
