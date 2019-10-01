@@ -10,7 +10,8 @@ export const environment = {
     databaseURL: 'https://fir-bc876.firebaseio.com',
     projectId: 'fir-bc876',
     storageBucket: '',
-    messagingSenderId: '111723231158'
+    messagingSenderId: '111723231158',
+    appId: '1:111723231158:web:9f88858fa0c0cb4b'
   },
   apiUrl: 'http://localhost:4200/'
 };

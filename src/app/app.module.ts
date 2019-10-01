@@ -22,6 +22,10 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AlertComponent } from './components/alert/alert.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { MessagingService } from './shared/messaging.service';
+import { AsyncPipe } from '../../node_modules/@angular/common';
 
 
 @NgModule({
@@ -44,9 +48,11 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     appRoutingModule,
     NgbDropdownModule,
-    FormsModule
+    FormsModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule
   ],
-  providers: [
+  providers: [MessagingService, AsyncPipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     fakeBackendProvider
