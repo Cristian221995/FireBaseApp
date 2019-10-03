@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   username: string;
   password: string;
+  found: boolean;
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
@@ -50,8 +51,8 @@ export class LoginComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
-
   onSubmit() {
+    console.log(this.f);
     this.submitted = true;
 
     // reset alerts on submit
@@ -72,8 +73,10 @@ export class LoginComponent implements OnInit {
       )
     ).subscribe(
       data => {
+        this.found = false;
         data.forEach( x => {
           if (x.username === this.username && x.password === this.password) {
+            this.found = true;
             localStorage.setItem('users', JSON.stringify(x));
             this.authenticationService.login(this.username, this.password)
               .pipe(first())
@@ -87,6 +90,10 @@ export class LoginComponent implements OnInit {
                 });
           }
         });
+        if (!this.found) {
+          this.loading = false;
+          return;
+        }
       },
       error => {
         this.alertService.error(error);
