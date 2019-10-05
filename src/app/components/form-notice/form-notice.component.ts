@@ -35,7 +35,6 @@ export class FormNoticeComponent implements OnInit {
     notice.date = date;
     this.noticeService.createNotice(notice);
 
-
     let notification = new Notification();
     notification.title = "FireApp Utn";
     notification.body = "Se ha cargado una noticia: " + title;
@@ -51,18 +50,13 @@ export class FormNoticeComponent implements OnInit {
     console.log(body);
     const httpOptions = {
       headers : new HttpHeaders({
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'key=AAAAGgM5N7Y:APA91bGaxyOnJWSJZFcNKBGWLV85i00gvtsf7KSw4mg98W1hhtf5nnpOrW0Yd-tR9_fd5QBpabcX5VBzCX78JA28TK5SsNftov8RuoVgxXuNpBc13T011PjvNTX8bOg4p9QJ0AGtdRd-'
         }
       )};
-    // let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
     console.log(httpOptions);
-    return this.http.post(this.url, body, httpOptions);
+    this.http.post(this.url, body, httpOptions);
 
-
-    //let headers = new HttpHeaders();
-    //headers.set('Content-Type', 'application/json');
-    //headers.set('Authorization', 'key=AAAAGgM5N7Y:APA91bGaxyOnJWSJZFcNKBGWLV85i00gvtsf7KSw4mg98W1hhtf5nnpOrW0Yd-tR9_fd5QBpabcX5VBzCX78JA28TK5SsNftov8RuoVgxXuNpBc13T011PjvNTX8bOg4p9QJ0AGtdRd-');
-
-    //return this.http.post(this.url, body , {headers: headers});
   }
 }
