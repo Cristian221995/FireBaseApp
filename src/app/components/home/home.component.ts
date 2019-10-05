@@ -7,7 +7,7 @@ import { MessagingService } from '../../shared/messaging.service';
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit {
   currentUser: any;
-  users = [];
+  users = JSON.parse(localStorage.getItem('users'));
   message;
 
   constructor(
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     private messagingService: MessagingService
   ) {
     this.currentUser = this.authenticationService.currentUserValue;
-    const userId = 'LpAyyRxXF6UjWH360E2';
+    const userId = this.users.key;
     this.messagingService.requestPermission(userId);
     this.messagingService.receiveMessage();
     this.message = this.messagingService.currentMessage;
