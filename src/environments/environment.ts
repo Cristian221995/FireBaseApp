@@ -13,7 +13,7 @@ export const environment = {
     messagingSenderId: '111723231158',
     appId: '1:111723231158:web:9f88858fa0c0cb4b'
   },
-  apiUrl: 'http://localhost:4200/'
+  apiUrl: 'https://utnapp.firebaseapp.com/'
 };
 
 /*

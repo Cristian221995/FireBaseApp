@@ -3,7 +3,7 @@
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-outline-primary" style="margin: 10px" id="dropdownForm1" ngbDropdownToggle>Add Notice</button>
         <div ngbDropdownMenu aria-labelledby="dropdownForm1">
-          <form class="px-4 py-3" [formGroup]="noticeForm" (ngSubmit)="addNotice(title, description, date)">
+          <form class="px-4 py-3" [formGroup]="noticeForm" (ngSubmit)="addNotice(title, description, date, $event)">
             <div class="form-group">
               <label for="title">Title</label>
               <input [(ngModel)]="title" type="text" formControlName="title" class="form-control"/>

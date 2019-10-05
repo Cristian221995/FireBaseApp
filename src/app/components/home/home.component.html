@@ -1,5 +1,5 @@
-<app-nav [currentUser]="currentUser"></app-nav>
-
+<app-nav *ngIf="users.key == '-LpAyyRxXF6UjWH360E2'" [currentUser]="currentUser"></app-nav>
+<app-nav-user *ngIf="users.key != '-LpAyyRxXF6UjWH360E2'" [currentUser]="currentUser"></app-nav-user>
 <br><br><br>
 <app-notice></app-notice>
 

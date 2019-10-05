@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class MessagingService {
+  token;
 
   currentMessage = new BehaviorSubject(null);
 
@@ -23,7 +24,6 @@ export class MessagingService {
       }
     );
   }
-
   /**
    * update token in firebase database
    *
@@ -49,6 +49,7 @@ export class MessagingService {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
         console.log(token);
+        this.token = token;
         this.updateToken(userId, token);
       },
       (err) => {

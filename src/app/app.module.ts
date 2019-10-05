@@ -26,6 +26,7 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { MessagingService } from './shared/messaging.service';
 import { AsyncPipe } from '../../node_modules/@angular/common';
+import { NavUserComponent } from './components/nav-user/nav-user.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
     NavComponent,
     HomeComponent,
     AlertComponent,
+    NavUserComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
