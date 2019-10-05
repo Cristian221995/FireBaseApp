@@ -22,10 +22,9 @@ export class NoticeComponent implements OnInit {
         notice.title = a['title'];
         notice.description = a['description'];
         notice.date = a['date'];
-        this.array.push(notice);
+        this.array.unshift(notice);
       });
     });
-    console.log(this.array);
   }
 
 }

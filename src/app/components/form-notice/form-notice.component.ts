@@ -34,6 +34,7 @@ export class FormNoticeComponent implements OnInit {
     notice.description = description;
     notice.date = date;
     this.noticeService.createNotice(notice);
+    window.alert('La noticia se cargo correctamente.');
 
     let notification = new Notification();
     notification.title = "FireApp Utn";
